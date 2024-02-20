@@ -23,14 +23,12 @@ end
 
 local framedelay = 15		
 
-
 function player_movement()
 	if (btn(➡️)) p.x+=1
 	if (btn(⬅️)) p.x-=1
 	if (btn(⬇️)) p.y+=1
 	if (btn(⬆️)) p.y-=1
 end
-
 
 function animation_sprite()
 
