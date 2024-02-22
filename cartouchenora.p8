@@ -69,8 +69,8 @@ function uplr()
  end
  
  --plant seeds--
- local ptx=(plr.x+4)/8
- local pty=(plr.y+7)/8
+ local ptx=(p.x+4)/8
+ local pty=(p.y+7)/8
  
  if btnp(❎) then
  mset(ptx,pty,3)
@@ -84,7 +84,7 @@ function uplr()
 end
 
 function dplr()
- spr(12,plr.x,plr.y)
+ spr(12,p.x,p.y)
 end
 
 
