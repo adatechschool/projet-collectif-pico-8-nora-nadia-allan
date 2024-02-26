@@ -39,9 +39,11 @@ function player_movement()
 	if (btn(⬇️)) dy+=1
 	if (btn(⬆️)) dy-=1
 	
-	if not check_flag(0,dx,dy) then
+	
+	if  collide(p) then
 		p.x=dx
 		p.y=dy
+ 
 	end
 end
 
@@ -142,6 +144,26 @@ end
 function check_flag(flag,x,y)
 	local sprite = mget(x,y)
 	return fget(sprite,flag)
+end
+
+-- collide
+function collide(p)
+
+local x1 = p.x/8
+local y1 = p.y/8
+local x2 = (p.x+7)/8
+local y2 = (p.y+7)/8
+
+local a=fget(mget(x1,y1),0)
+local b=fget(mget(x1,y2),0)
+local c=fget(mget(x2,y2),0)
+local d=fget(mget(x2,y1),0)
+
+if a or b or c or d then
+ return true
+else 
+ return false
+end
 end
 
 function update_camera()
