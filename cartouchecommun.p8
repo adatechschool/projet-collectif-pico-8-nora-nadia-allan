@@ -12,6 +12,7 @@ function _update()
 	if scene==0 then
 					update_menu()
 	end
+	animation_dog()
 	player_movement()
  follow()
  updatecrops()
@@ -169,6 +170,7 @@ function draw_objects()
 end
 -->8
 --dog
+local framedelay = 15
 
 function follow()
 
@@ -200,12 +202,22 @@ function follow()
  end
 
 function animation_dog()
+
 	if dog.ismoving==true then
+		if framedelay >0 then
+		framedelay-=1
+		return
+ end
+ 
+ framedelay = 15
+ 
 		if dog.sprite<12 then
 			dog.sprite+=1
 		else
 			dog.sprite=11
 		end
+	elseif dog.ismoving==false then
+		dog.sprite=11				
 	end
 end
 -->8
