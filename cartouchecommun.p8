@@ -9,6 +9,7 @@ end
 
 function _update()
 	player_movement()
+ animation_sprite()
  follow()
  updatecrops()
  plant_seeds()
@@ -20,16 +21,15 @@ function _draw()
 	draw_map()
 	draw_objects()
 	drawcrops()
-	print(p.sprite)
-	print(p.sdown)
-	print(p.sup)
-	print(p.snumber)
+	for s in all(seeds) do
+		print(s.sx)
+	end
 end
 
 -->8
 --player
 
-local framedelay = 15
+local framedelay = 15		
 
 function player_movement()
 	dx=p.x
@@ -83,8 +83,8 @@ function plant_seeds()
  end
 end
 
-function animation_down()
- 
+function animation_sprite()
+
 	if framedelay >0 then
 		framedelay-=1
 		return
@@ -92,10 +92,10 @@ function animation_down()
  
  framedelay = 15
  
-	if p.sdown<4 then 
-		p.sdown+=1
+	if p.sprite<4 then 
+		p.sprite+=1
 	else
-		p.sdown=1
+		p.sprite=1
 	end
 end
 
@@ -154,7 +154,6 @@ function make_object(x,y,sprite,sright,sleft,sup,sdown)
 	local object = {}
 	object.x = x
 	object.y = y
-	object.snumber = sprite
 	object.sprite = sprite
 	object.sright = sright
 	object.sleft = sleft
@@ -165,7 +164,7 @@ function make_object(x,y,sprite,sright,sleft,sup,sdown)
 end
 
 function draw_objects()
-	spr(p.snumber,p.x,p.y)
+	spr(p.sprite,p.x,p.y)
 	spr(dog.sprite,dog.x,dog.y)
 end
 -->8
@@ -192,7 +191,7 @@ function follow()
        dog.y -= speed
    end
   end
- end
+end
 
 -->8
 --map
