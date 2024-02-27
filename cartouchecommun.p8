@@ -158,6 +158,7 @@ function make_object(x,y,sprite,sright,sleft,sup,sdown)
 	object.sleft = sleft
 	object.sup = sup
 	object.sdown = sdown
+	object.ismoving = false
 	add(objects,object)
 	return object
 end
@@ -175,23 +176,38 @@ function follow()
 	-- seuil de distance pour s'arreter avant d'atteindre le joueur
  distancethreshold = 9 
 
+	dog.ismoving = false
+
 	if abs(dog.x - p.x) > distancethreshold then
 		if dog.x < p.x then
 		    dog.x += speed
+		    dog.ismoving = true
 		elseif dog.x > p.x then
 		    dog.x -= speed
+		    dog.ismoving = true
 		end
   end
 
   if abs(dog.y - p.y) > distancethreshold then
    if dog.y < p.y then
        dog.y += speed
+       dog.ismoving = true
    elseif dog.y > p.y then
        dog.y -= speed
+       dog.ismoving = true
    end
   end
  end
 
+function animation_dog()
+	if dog.ismoving==true then
+		if dog.sprite<12 then
+			dog.sprite+=1
+		else
+			dog.sprite=11
+		end
+	end
+end
 -->8
 --map
 
