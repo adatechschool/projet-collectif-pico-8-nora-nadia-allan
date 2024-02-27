@@ -2,12 +2,16 @@ pico-8 cartridge // http://www.pico-8.com
 version 38
 __lua__
 function _init()
+	scene=0
 	p=make_object(170,170,1,5,33,7,1)
 	dog=make_object(160,160,11)
 	initcrops()
 end
 
 function _update()
+	if scene==0 then
+					update_menu()
+	end
 	player_movement()
  follow()
  updatecrops()
@@ -15,15 +19,9 @@ function _update()
 end
 
 function _draw()
-	update_camera()
-	cls(3)
-	draw_map()
-	draw_objects()
+	draw_menu()
+	draw_game()
 	drawcrops()
-	print(p.sprite)
-	print(p.sdown)
-	print(p.sup)
-	print(p.snumber)
 end
 
 -->8
@@ -260,6 +258,29 @@ end
 
 function drawcrops()
 
+end
+-->8
+-- menu
+function update_menu()
+	if btnp(🅾️) then
+				scene=1
+	end
+end
+
+function draw_menu()
+	if scene==0 then
+	cls(0)
+	print("press 🅾️ to start",30,63)
+	end
+end
+
+function draw_game()
+ if scene==1 then
+ cls(3)
+ draw_map()
+ draw_objects()
+ update_camera()
+ end
 end
 __gfx__
 0000000000999990000000000099999000000000000000000009999000000000009999000000000000999900009fff0000000000044444400444444004444440
